@@ -1,0 +1,28 @@
+name: Manual deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version (Ex.: v0.0.1)"
+        required: true
+      landing_zone:
+        description: "Landing Zone name (Ex.: dev,qa,prod)"
+        required: true
+      env:
+        description: "Target environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  cd:
+    uses: Mindera-FPS/devops/.github/workflows/manual-deploy-php.yml@ai-t-05-php
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      statuses: read

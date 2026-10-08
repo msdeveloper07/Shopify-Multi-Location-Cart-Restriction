@@ -1,0 +1,15 @@
+name: Pull request to main branch PIPELINE
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+    uses: Mindera-FPS/devops/.github/workflows/pr-php.yml@ai-t-05-php
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+      statuses: read

@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: laravel-app
+    env: php
+    plan: free
+    buildCommand: |
+      composer install --no-dev
+      php artisan config:cache
+      php artisan migrate --force
+    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+            name: your-database-name
+            property: host
+      - key: DB_PORT
+        fromDatabase:
+            name: your-database-name
+            property: port
+      - key: DB_DATABASE
+        fromDatabase:
+            name: your-database-name
+            property: database
+      - key: DB_USERNAME
+        fromDatabase:
+            name: your-database-name
+            property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+            name: your-database-name
+            property: password

@@ -1,0 +1,16 @@
+name: Main branch PIPELINE
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+    uses: Mindera-FPS/devops/.github/workflows/main-push-php.yml@ai-t-05-php
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      pull-requests: write
+      statuses: read
